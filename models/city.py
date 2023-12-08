@@ -1,26 +1,30 @@
 #!/usr/bin/python3
-"""This is the city class"""
-import os
-from sqlalchemy.ext.declarative import declarative_base
+""" holds class City"""
+
+from models.base_model import BaseModel, Base
+from os import getenv
+
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 
-from models.base_model import BaseModel, Base
 
 
 class City(BaseModel, Base):
-    """city class with an attr of state Id
-    and name
-    """
-    __tablename__ = 'cities'
-    name = Column(
-        String(128), nullable=False
-    ) if os.getenv('HBNB_TYPE_STORAGE') == 'db' else ''
-    state_id = Column(
-        String(60), ForeignKey('states.id'), nullable=False
-    ) if os.getenv('HBNB_TYPE_STORAGE') == 'db' else ''
-    places = relationship(
-        'Place',
-        cascade='all, delete, delete-orphan',
-        backref='cities'
-    ) if os.getenv('HBNB_TYPE_STORAGE') == 'db' else None
+    """Representation of city """
+    if getenv('HBNB_TYPE_STORAGE') == 'db':
+        __tablename__ = 'cities'
+        name = Column(String(128),
+                      nullable=False)
+        state_id = Column(String(60),
+                          ForeignKey('states.id'),
+                          nullable=False)
+        places = relationship("Place",
+                              backref="cities",
+                              cascade="all, delete-orphan")
+    else:
+        name = ""
+        state_id = ""
+
+    def __init__(self, *args, **kwargs):
+        """initializes city"""
+        super().__init__(*args, **kwargs)

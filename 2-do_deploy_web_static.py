@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-fab script that dist an archive to my web servers
+Fabric script that distributes an archive to your web servers
 """
 
 from datetime import datetime
@@ -10,9 +10,10 @@ import os
 env.hosts = ["52.86.177.160", "34.229.69.158"]
 env.user = "ubuntu"
 
+
 def do_pack():
     """
-    return the archive path if archive has generated correctly
+        return the archive path if archive has generated correctly.
     """
 
     local("mkdir -p versions")
@@ -25,9 +26,10 @@ def do_pack():
     else:
         return None
 
+
 def do_deploy(archive_path):
     """
-        Dis arhcive
+        Distribute archive.
     """
     if os.path.exists(archive_path):
         archived_file = archive_path[9:]

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 # Transfers a file from our client to a server
 #
 # variables
@@ -7,7 +7,7 @@ filename=$(basename "$BASH_SOURCE")
 file="$1"
 ip="$2"
 user="ubuntu"
-key="~/id_rsa.pub"
+key="~/.ssh/id_rsa"
 
 if [ $# -eq 2 ]; then
         scp -i "$key" -o StrictHostKeyChecking=no "$path"/"$file" "$user"@"$ip":/home/"$user"/

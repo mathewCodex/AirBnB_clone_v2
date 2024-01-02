@@ -1,6 +1,11 @@
 #!/usr/bin/python3
 """
 starts a Flask web application
+Routes:
+    /: Displays 'Hello HBNB!'.
+    /hbnb: Displays 'HBNB'.
+    /c/<text>: Displays 'C' followed by the value of <text>.
+    /python/(<text>): Displays 'Python' followed by the value of <text>.
 """
 
 from flask import Flask

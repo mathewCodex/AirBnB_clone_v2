@@ -6,10 +6,11 @@ from os import getenv
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 
+STORE_TYPE ='db'
 
 class State(BaseModel, Base):
     """Representation of state """
-    if getenv('HBNB_TYPE_STORAGE') == 'db':
+    if STORE_TYPE == 'db':
         __tablename__ = 'states'
         name = Column(String(128),
                       nullable=False)
@@ -22,7 +23,7 @@ class State(BaseModel, Base):
         """initializes state"""
         super().__init__(*args, **kwargs)
 
-    if getenv('HBNB_TYPE_STORAGE') != 'db':
+    if STORE_TYPE != 'db':
         @property
         def cities(self):
             """fs getter attribute that returns City instances"""

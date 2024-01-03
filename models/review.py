@@ -4,11 +4,11 @@ from models.base_model import BaseModel, Base
 from os import getenv
 from sqlalchemy import Column, String, ForeignKey
 
-
+STORE_TYPE = 'db'
 
 class Review(BaseModel, Base):
     """Representation of Review """
-    if getenv('HBNB_TYPE_STORAGE') == 'db':
+    if STORE_TYPE == 'db':
         __tablename__ = 'reviews'
         text = Column(String(1024),
                       nullable=False)

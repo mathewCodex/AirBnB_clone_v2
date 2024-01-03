@@ -7,10 +7,11 @@ from os import getenv
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, String
 
+STORE_TYPE = 'db'
 
 class User(BaseModel, Base):
     """Representation of a user """
-    if getenv('HBNB_TYPE_STORAGE') == 'db':
+    if STORE_TYPE == 'db':
         __tablename__ = 'users'
         email = Column(String(128),
                        nullable=False)

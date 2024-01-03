@@ -7,11 +7,11 @@ from os import getenv
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 
-
+STORE_TYPE = 'db'
 
 class City(BaseModel, Base):
     """Representation of city """
-    if getenv('HBNB_TYPE_STORAGE') == 'db':
+    if STORE_TYPE == 'db':
         __tablename__ = 'cities'
         name = Column(String(128),
                       nullable=False)
